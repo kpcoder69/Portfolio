@@ -11,49 +11,113 @@ body {
     /* background: #081b29; */
     background: #0c0014;
 }
-
+/* Header styling */
+/* Header */
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 10%;
-    background: #12001e94;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
-
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 10%;
+  background: #12001e94;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
 }
 
+/* Logo */
 .logo {
-    position: relative;
-    font-size: 35px;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    cursor: default;
-    opacity: 0;
-    animation: slideRight 1s ease forwards;
+  font-size: 35px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  opacity: 0;
+  animation: slideRight 1s ease forwards;
+}
 
+/* Navbar Links (desktop) */
+.navbar {
+  display: flex;
 }
 
 .navbar a {
-    display: inline-block;
-    color: #fff;
-    text-decoration: none;
-    margin-left: 35px;
-    font-size: 25px;
-    font-weight: 500;
-    transition: .3s;
-    opacity: 0;
-    animation: slideTop .5s ease forwards;
-    animation-delay: calc(.2s* var(--i));
+  color: #fff;
+  text-decoration: none;
+  margin-left: 35px;
+  font-size: 25px;
+  font-weight: 500;
+  transition: 0.3s;
+  opacity: 0;
+  animation: slideTop 0.5s ease forwards;
+  animation-delay: calc(0.2s * var(--i));
 }
 
 .navbar a:hover {
-    color: #0ef;
+  color: #0ef;
 }
+
+/* Toggler */
+.menu-toggle {
+  display: none;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* -------------------
+   Responsive Styles
+------------------- */
+@media (max-width: 768px) {
+  /* Navbar hidden initially */
+  .navbar {
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    width: 100%;
+    background: #1c0033; /* darker shade */
+    flex-direction: column;
+    align-items: center;
+    transition: 0.4s ease;
+    padding: 20px 0;
+  }
+
+  /* When active */
+  .navbar.active {
+    left: 0;
+  }
+
+  /* Navbar links in vertical style */
+  .navbar a {
+    margin: 12px 0;
+    font-size: 22px;
+    display: block;
+    width: 90%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    transition: 0.3s ease;
+  }
+
+  .navbar a:hover {
+    background: #0ef;
+    color: #12001e;
+    transform: scale(1.05);
+  }
+
+  /* Show hamburger in mobile */
+  .menu-toggle {
+    display: block;
+  }
+}
+
+
+
+
+
+
+
 
 .home {
     position: relative;
@@ -208,62 +272,7 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-
-
-.about {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    gap: 1.5 rem;
-
-}
-
-.about-img img {
-    padding-bottom: 20%;
-    max-width: 630px;
-    height: auto;
-    width: 100%;
-    border-radius: 8px;
-}
-
-.about-text h2 {
-    font-size: 60px;
-}
-
-.about-text h2 span {
-    color: #0ef;
-}
-
-.about-text h4 {
-    font-size: 29px;
-    font-weight: 600;
-    color: #ffff;
-    line-height: 1.7;
-    margin: 15px 0 30px;
-
-}
-
-.about-text p {
-    color: aliceblue;
-    font-size: 20px;
-    line-height: 1.4;
-    margin-bottom: 4rem;
-} */
-
+/* About Section */
 .about {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -311,6 +320,68 @@ body {
     line-height: 1.4;
     margin-bottom: 4rem;
 }
+/* Tablet screens (992px tak) */
+@media screen and (max-width: 992px) {
+  .about {
+    grid-template-columns: 1fr;   /* 2 column → single column */
+    text-align: center;
+  }
+
+  .about-img img.profile-photo {
+    width: 260px;
+    height: 260px;
+    margin-bottom: 20px;
+  }
+
+  .about-text h2 {
+    font-size: 45px;
+  }
+
+  .about-text h4 {
+    font-size: 24px;
+  }
+
+  .about-text p {
+    font-size: 18px;
+  }
+}
+
+/* Mobile screens (600px tak) */
+@media screen and (max-width: 600px) {
+  .about-text h2 {
+    font-size: 35px;
+  }
+
+  .about-text h4 {
+    font-size: 20px;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: justify;
+  }
+
+  .about-img img.profile-photo {
+    width: 200px;
+    height: 200px;
+  }
+}
+/* About aur Services ke beech ka gap fix */
+.about-text p {
+  margin-bottom: 2rem; /* pehle 4rem tha, ab thoda kam */
+}
+
+#services .container {
+  padding-top: 0px;  /* upar ka padding 90px se kam karke 40px kar diya */
+}
+
+
+
+
+
+
+
 
 
 #services {
@@ -650,13 +721,22 @@ body {
 
 } */
 
+#services {
+  margin-bottom: -5rem; /* 4rem se 2rem kiya */
+}
+
+
+#portfolio{
+    margin-top: -390px;
+}
+
 section {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 50px 20px;
-    gap: 40px;
-    margin: 60px 0; 
+    padding: 30px 20px;
+    gap: 0px;
+    margin: 20px 0; 
 }
 
 .container1 {
@@ -1094,6 +1174,82 @@ section {
     border-radius: 0.5rem;
 
 }
+/* Tablet view (max-width: 992px) */
+@media screen and (max-width: 992px) {
+  .contact {
+    grid-template-columns: 1fr;   /* 2 column → single column */
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .contact-text h2 {
+    font-size: 60px;
+  }
+
+  .contact-text h4 {
+    font-size: 24px;
+  }
+
+  .contact-text p {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .contact-form form input,
+  .contact-form form textarea {
+    width: 100%;
+  }
+
+  .contact-icon {
+    margin-top: 20px;
+  }
+}
+
+/* Mobile view (max-width: 600px) */
+@media screen and (max-width: 600px) {
+  .contact {
+    padding-left: 10px;
+    margin-top: 80px;
+  }
+
+  .contact-text h2 {
+    font-size: 40px;
+  }
+
+  .contact-text h4 {
+    font-size: 20px;
+  }
+
+  .contact-text p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .contact-list li {
+    font-size: 16px;
+  }
+
+  .contact-form form input,
+  .contact-form form textarea {
+    font-size: 0.9rem;
+    padding: 14px;
+  }
+
+  .contact-form textarea {
+    height: 160px;
+  }
+
+  .contact-form form .send {
+    padding: 12px 40px;
+    font-size: 16px;
+  }
+
+  .last-text p {
+    font-size: 14px;
+    padding: 15px 0;
+  }
+}
+
 
 @keyframes slideRight {
     0% {
